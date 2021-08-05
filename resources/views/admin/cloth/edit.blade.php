@@ -1,18 +1,35 @@
-@extends('layout')
+@extends('admin.layout')
 
 @section('title', 'Edit cloth information')
+@section('active1', 'active')
 @section('content-name', 'Sửa thông tin quần áo')
 @section('content')
     <h3>{{ $cloth->cloth_name }}</h3>
-    <form method="post" action="{{ route('cloth.update', $cloth->id) }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('admin.cloth.update', $cloth->id) }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="name">Tên xe:</label>
+            <label for="name">Tên quần áo:</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên quần áo" value="{{ $cloth->cloth_name }}">
         </div>
         <div class="form-group">
             <label for="price">Giá:</label>
             <input type="text" class="form-control" id="price" name="price" placeholder="Nhập giá quần áo" value="{{ $cloth->price }}">
+        </div>
+        <div class="form-group">
+            <label for="brand_id">Hãng:</label>
+            <select class="form-control" name="brand_id">
+                <option value="" selected disabled hidden>-- Chọn hãng quần áo --</option>
+                @foreach($brands as $brand)
+                    <option
+                        @if($cloth->brand_id == $brand->id)
+                            {{'selected'}}
+                        @endif
+                        value="{{ $brand->id }}"
+                    >
+                        {{ $brand->name }}
+                    </option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="exampleInputFile">Ảnh:</label>
@@ -31,8 +48,8 @@
             <textarea class="form-control" id="description" name="description">{{ $cloth->description }}</textarea>
         </div>
         <div class="d-flex">
-            <input type="submit" class="btn btn-success" value="Sửa">
-            <a href="{{ route('cloth.index') }}" class="btn btn-default ml-2">Huỷ</a>
+            <input type="submit" class="btn btn-success" value="Cập nhật">
+            <a href="{{ route('admin.cloth.index') }}" class="btn btn-default ml-2">Huỷ</a>
         </div>
     </form>
 @endsection

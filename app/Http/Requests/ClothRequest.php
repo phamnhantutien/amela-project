@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class ClothRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'name' => 'required|min:3',
+            'price' => 'required|numeric',
+            'brand_id' => 'required',
+            'image' => 'required|image|mimes:jpeg,jpg,png|mimetypes:image/jpeg,image/png,image/jpg|max:5120',
+            'description' => 'required|min:3'
+        ];
+    }
+
+    public function messages()
+    {
+        $messages = [
+            'name.required' => 'Hãy nhập tên quần áo',
+            'price.required' => 'Hãy nhập giá quần áo',
+            'price.numeric' => 'Giá quần áo phải là số',
+            'brand_id.required' => 'Hãy chọn hãng quần áo',
+            'image.required' => 'Hãy chọn hình ảnh của quần áo',
+            'description.required' => 'Hãy nhập mô tả quần áo'
+        ];
+        return $messages;
+    }
+}

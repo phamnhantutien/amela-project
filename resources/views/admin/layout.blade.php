@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Car Seller | @yield('title')</title>
+    <title>Clothes Seller | @yield('title')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -45,8 +45,20 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ route('home') }}" class="nav-link">Home</a>
+                    <a href="{{ route('admin.home') }}" class="nav-link">Home</a>
                 </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="{{ route('admin.showlogin') }}" class="nav-link">Đăng nhập</a>
+                </li>
+                @if(Session::has('login') && Session::get('login'))
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="{{ route('admin.logout') }}" class="nav-link">Thoát</a>
+                    </li>
+                @endif
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -56,7 +68,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="{{ route('home') }}" class="brand-link">
+        <a href="{{ route('admin.home') }}" class="brand-link">
             <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">Quần áo</span>
         </a>
@@ -78,18 +90,28 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('cloth.index') }}" class="nav-link active">
+                                <a href="{{ route('admin.cloth.index') }}" class="nav-link @yield('active1')">
                                     <p>Danh sách quần áo</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="{{ route('admin.brand.index') }}" class="nav-link @yield('active2')">
                                     <p>Hãng quần áo</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="" class="nav-link">
                                     <p>Cửa hàng</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link">
+                                    <p>Khách hàng</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link">
+                                    <p>Hóa đơn</p>
                                 </a>
                             </li>
                         </ul>

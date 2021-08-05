@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('admin.layout')
 
 @section('title', 'Home')
 @section('content-name', 'Welcome')
