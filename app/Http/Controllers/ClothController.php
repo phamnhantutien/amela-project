@@ -26,7 +26,7 @@ class ClothController extends Controller
 
     public function index()
     {
-        $clothes = Cloth::all();
+        $clothes = Cloth::paginate(5);
         $brands = Brand::all();
         return view('admin.cloth.list', compact('clothes', 'brands'));
     }

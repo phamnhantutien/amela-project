@@ -64,7 +64,7 @@
         <!-- /.card-body -->
         <div class="card-footer clearfix">
             <ul class="pagination pagination-sm m-0 float-right">
-                {{-- {{ $cars->links() }} --}}
+                {{ $clothes->links() }}
             </ul>
         </div>
         <div class="modal fade" id="brandModal" role="dialog">
